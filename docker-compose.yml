@@ -1,0 +1,25 @@
+version: '3'
+services:
+  # Your Node.js application
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb+srv://jai_alluri:Luckyman123@clusteremailservice.sty6b.mongodb.net/emailservice?retryWrites=true&w=majority
+      - EMAIL_USER=smartscript22@gmail.com
+      - EMAIL_PASSWORD=nphhcokujjfhvquw
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
+  # MongoDB service
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
